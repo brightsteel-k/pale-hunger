@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "palehunger",
+	"version": "${version}",
+	"name": "The Pale Hunger",
+	"description": "Horror mod about a sentient fungus attempting to consume the player.",
+	"authors": [
+		"Br1ghtsteel",
+        "troopsushi"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/palehunger/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.br1ghtsteel.palehunger.ThePaleHunger"
+		]
+	},
+	"mixins": [
+		"palehunger.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
