@@ -18,7 +18,10 @@
 	"entrypoints": {
 		"main": [
 			"com.br1ghtsteel.palehunger.ThePaleHunger"
-		]
+		],
+        "client": [
+          "com.br1ghtsteel.palehunger.ThePaleHungerClient"
+        ]
 	},
 	"mixins": [
 		"palehunger.mixins.json"

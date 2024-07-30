@@ -1,5 +1,8 @@
 package com.br1ghtsteel.palehunger;
 
+import com.br1ghtsteel.palehunger.block.ModBlocks;
+import com.br1ghtsteel.palehunger.item.ModItemGroups;
+import com.br1ghtsteel.palehunger.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -13,5 +16,9 @@ public class ThePaleHunger implements ModInitializer {
 	public void onInitialize() {
 
 		LOGGER.info("Hello Fabric world!");
+
+        ModItemGroups.registerItemGroups();
+        ModItems.registerModItems();
+        ModBlocks.registerModBlocks();
 	}
 }
