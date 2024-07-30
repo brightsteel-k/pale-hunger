@@ -1,10 +1,13 @@
 package com.br1ghtsteel.palehunger;
 
 import com.br1ghtsteel.palehunger.block.ModBlocks;
+import com.br1ghtsteel.palehunger.entity.ModEntities;
+import com.br1ghtsteel.palehunger.entity.SkinfeederEntity;
 import com.br1ghtsteel.palehunger.item.ModItemGroups;
 import com.br1ghtsteel.palehunger.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,5 +23,7 @@ public class ThePaleHunger implements ModInitializer {
         ModItemGroups.registerItemGroups();
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
+
+        FabricDefaultAttributeRegistry.register(ModEntities.SKINFEEDER_ENTITY, SkinfeederEntity.createSkinfeederAttributes());
 	}
 }

@@ -17,6 +17,7 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(ModBlocks.DROSS_ROSE))
                     .entries((displayContext, entries) -> {
                         entries.add(ModBlocks.DROSS_ROSE);
+                        entries.add(ModItems.SKINFEEDER_SPAWN_EGG);
                     }).build());
 
     public static void registerItemGroups() {

@@ -1,18 +1,23 @@
 package com.br1ghtsteel.palehunger.item;
 
 import com.br1ghtsteel.palehunger.ThePaleHunger;
+import com.br1ghtsteel.palehunger.entity.ModEntities;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroups;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
-    /*public static final Item COPPER_BAR = registerItem("copper_bar",
-            new BarBlockItem(ModBlocks.COPPER_BAR_STRAIGHT, ModBlocks.COPPER_BAR_CORNER, new FabricItemSettings()));*/
+    public static final Item SKINFEEDER_SPAWN_EGG = registerItem("skinfeeder_spawn_egg",
+            new SpawnEggItem(ModEntities.SKINFEEDER_ENTITY, 0xad9e95, 0xdf3c3f, new FabricItemSettings()));
 
-    private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
-        // entries.add(COPPER_BAR);
+    private static void addItemsToSpawnEggItemGroup(FabricItemGroupEntries entries) {
+        entries.add(SKINFEEDER_SPAWN_EGG);
     }
 
     public static Item registerItem(String name, Item item) {
@@ -22,6 +27,6 @@ public class ModItems {
     public static void registerModItems() {
         ThePaleHunger.LOGGER.info("Registering Mod Items for: " + ThePaleHunger.MOD_ID);
 
-        // ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModItems::addItemsToIngredientItemGroup);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(ModItems::addItemsToSpawnEggItemGroup);
     }
 }
