@@ -11,7 +11,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
 
-public class ThePaleHungerClient implements ClientModInitializer {
+public class HuntedClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {

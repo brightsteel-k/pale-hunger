@@ -1,6 +1,6 @@
 package com.br1ghtsteel.palehunger.item;
 
-import com.br1ghtsteel.palehunger.ThePaleHunger;
+import com.br1ghtsteel.palehunger.Hunted;
 import com.br1ghtsteel.palehunger.entity.ModEntities;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
@@ -21,11 +21,11 @@ public class ModItems {
     }
 
     public static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, new Identifier(ThePaleHunger.MOD_ID, name), item);
+        return Registry.register(Registries.ITEM, new Identifier(Hunted.MOD_ID, name), item);
     }
 
     public static void registerModItems() {
-        ThePaleHunger.LOGGER.info("Registering Mod Items for: " + ThePaleHunger.MOD_ID);
+        Hunted.LOGGER.info("Registering Mod Items for: " + Hunted.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(ModItems::addItemsToSpawnEggItemGroup);
     }

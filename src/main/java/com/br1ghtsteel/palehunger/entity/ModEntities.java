@@ -1,6 +1,6 @@
 package com.br1ghtsteel.palehunger.entity;
 
-import com.br1ghtsteel.palehunger.ThePaleHunger;
+import com.br1ghtsteel.palehunger.Hunted;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -18,6 +18,6 @@ public class ModEntities {
 
     public static <T extends Entity> EntityType<T> registerEntity(String name, EntityType.Builder<T> entityTypeBuilder) {
         EntityType<T> entityType = entityTypeBuilder.build(name);
-        return Registry.register(Registries.ENTITY_TYPE, new Identifier(ThePaleHunger.MOD_ID, name), entityType);
+        return Registry.register(Registries.ENTITY_TYPE, new Identifier(Hunted.MOD_ID, name), entityType);
     }
 }

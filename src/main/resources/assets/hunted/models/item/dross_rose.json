@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "palehunger:block/dross_rose"
+    "layer0": "hunted:block/dross_rose"
   }
 }

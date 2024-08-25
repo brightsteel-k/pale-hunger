@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "palehunger:block/dross_rose"
+    "cross": "hunted:block/dross_rose"
   }
 }

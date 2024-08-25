@@ -1,6 +1,6 @@
 package com.br1ghtsteel.palehunger.entity.client;
 
-import com.br1ghtsteel.palehunger.ThePaleHunger;
+import com.br1ghtsteel.palehunger.Hunted;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.util.Identifier;
 
@@ -16,6 +16,6 @@ public class ModModelLayers {
     }
 
     private static EntityModelLayer register(String id, String type) {
-        return new EntityModelLayer(new Identifier(ThePaleHunger.MOD_ID, id), type);
+        return new EntityModelLayer(new Identifier(Hunted.MOD_ID, id), type);
     }
 }

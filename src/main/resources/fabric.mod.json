@@ -17,10 +17,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.br1ghtsteel.palehunger.ThePaleHunger"
+          "com.br1ghtsteel.palehunger.Hunted"
 		],
         "client": [
-          "com.br1ghtsteel.palehunger.ThePaleHungerClient"
+          "com.br1ghtsteel.palehunger.HuntedClient"
         ]
 	},
 	"mixins": [

@@ -1,6 +1,6 @@
 package com.br1ghtsteel.palehunger.entity.client;
 
-import com.br1ghtsteel.palehunger.ThePaleHunger;
+import com.br1ghtsteel.palehunger.Hunted;
 import com.br1ghtsteel.palehunger.entity.SkinfeederEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class SkinfeederOverlayFeatureRenderer<T extends SkinfeederEntity> extends FeatureRenderer<T, SkinfeederModel<T>> {
-    private static final Identifier SKIN = new Identifier(ThePaleHunger.MOD_ID, "textures/entity/skinfeeder_outer_layer.png");
+    private static final Identifier SKIN = new Identifier(Hunted.MOD_ID, "textures/entity/skinfeeder_outer_layer.png");
     private final SkinfeederModel<T> model;
 
     public SkinfeederOverlayFeatureRenderer(FeatureRendererContext<T, SkinfeederModel<T>> context, EntityModelLoader loader) {

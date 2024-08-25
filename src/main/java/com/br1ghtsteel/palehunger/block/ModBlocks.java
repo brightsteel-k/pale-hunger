@@ -1,6 +1,6 @@
 package com.br1ghtsteel.palehunger.block;
 
-import com.br1ghtsteel.palehunger.ThePaleHunger;
+import com.br1ghtsteel.palehunger.Hunted;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -25,15 +25,15 @@ public class ModBlocks {
         if (shouldMakeBlockItem) {
             registerBlockItem(name, block);
         }
-        return Registry.register(Registries.BLOCK, new Identifier(ThePaleHunger.MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, new Identifier(Hunted.MOD_ID, name), block);
     }
 
     public static Item registerBlockItem(String name, Block block) {
-        return Registry.register(Registries.ITEM, new Identifier(ThePaleHunger.MOD_ID, name),
+        return Registry.register(Registries.ITEM, new Identifier(Hunted.MOD_ID, name),
                 new BlockItem(block, new FabricItemSettings()));
     }
 
     public static void registerModBlocks() {
-        ThePaleHunger.LOGGER.info("Registering Mod Blocks for: " + ThePaleHunger.MOD_ID);
+        Hunted.LOGGER.info("Registering Mod Blocks for: " + Hunted.MOD_ID);
     }
 }
