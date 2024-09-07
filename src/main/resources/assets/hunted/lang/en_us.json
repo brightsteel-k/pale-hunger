@@ -4,6 +4,13 @@
   "item.hunted.skinfeeder_spawn_egg": "Skinfeeder Spawn Egg",
 
   "block.hunted.dross_rose": "Dross Rose",
+  "block.hunted.pale_fungus": "Pale Fungus",
+  "block.hunted.tall_pale_fungus": "Tall Pale Fungus",
+  "block.hunted.pale_grass": "Pale Grass",
+  "block.hunted.tall_pale_grass": "Tall Pale Grass",
+  "block.hunted.pale_leaves": "Pale Leaves",
+  "block.hunted.pale_hyphae_dirt": "Pale Hyphae Dirt",
+  "block.hunted.pale_mycelium": "Pale Mycelium",
 
   "entity.hunted.skinfeeder": "Skinfeeder"
 }

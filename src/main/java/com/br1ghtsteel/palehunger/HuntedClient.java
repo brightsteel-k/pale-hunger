@@ -16,6 +16,11 @@ public class HuntedClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DROSS_ROSE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALE_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALE_FUNGUS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TALL_PALE_FUNGUS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALE_GRASS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TALL_PALE_GRASS, RenderLayer.getCutout());
 
         EntityRendererRegistry.register(ModEntities.SKINFEEDER_ENTITY, SkinfeederRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.SKINFEEDER, SkinfeederModel::getTexturedModelData);

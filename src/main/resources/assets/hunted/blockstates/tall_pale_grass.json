@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "hunted:block/tall_pale_grass_bottom"
+    },
+    "half=upper": {
+      "model": "hunted:block/tall_pale_grass_top"
+    }
+  }
+}

@@ -11,12 +11,19 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
-    public static final ItemGroup AMBER_AND_COPPER = Registry.register(Registries.ITEM_GROUP,
+    public static final ItemGroup HUNTED = Registry.register(Registries.ITEM_GROUP,
             new Identifier(Hunted.MOD_ID, "hunted"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.hunted"))
-                    .icon(() -> new ItemStack(ModBlocks.DROSS_ROSE))
+                    .icon(() -> new ItemStack(ModBlocks.PALE_FUNGUS))
                     .entries((displayContext, entries) -> {
                         entries.add(ModBlocks.DROSS_ROSE);
+                        entries.add(ModBlocks.PALE_HYPHAE_DIRT);
+                        entries.add(ModBlocks.PALE_MYCELIUM);
+                        entries.add(ModBlocks.PALE_LEAVES);
+                        entries.add(ModBlocks.PALE_FUNGUS);
+                        entries.add(ModBlocks.TALL_PALE_FUNGUS);
+                        entries.add(ModBlocks.PALE_GRASS);
+                        entries.add(ModBlocks.TALL_PALE_GRASS);
                         entries.add(ModItems.SKINFEEDER_SPAWN_EGG);
                     }).build());
 

@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "palehunger:dross_rose"
+          "name": "hunted:dross_rose"
         }
       ],
       "rolls": 1.0
