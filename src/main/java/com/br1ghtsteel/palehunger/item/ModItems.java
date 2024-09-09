@@ -1,6 +1,7 @@
 package com.br1ghtsteel.palehunger.item;
 
 import com.br1ghtsteel.palehunger.Hunted;
+import com.br1ghtsteel.palehunger.block.ModBlocks;
 import com.br1ghtsteel.palehunger.entity.ModEntities;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
@@ -8,13 +9,17 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.item.VerticallyAttachableBlockItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 
 public class ModItems {
     public static final Item SKINFEEDER_SPAWN_EGG = registerItem("skinfeeder_spawn_egg",
             new SpawnEggItem(ModEntities.SKINFEEDER_ENTITY, 0xad9e95, 0xdf3c3f, new FabricItemSettings()));
+    public static final Item PALE_GROWTH = registerItem("pale_growth", new VerticallyAttachableBlockItem(ModBlocks.PALE_GROWTH, ModBlocks.PALE_WALL_GROWTH, new Item.Settings(), Direction.DOWN));
+    public static final Item PALE_CONK = registerItem("pale_conk", new VerticallyAttachableBlockItem(ModBlocks.PALE_CONK, ModBlocks.PALE_WALL_CONK, new Item.Settings(), Direction.DOWN));
 
     private static void addItemsToSpawnEggItemGroup(FabricItemGroupEntries entries) {
         entries.add(SKINFEEDER_SPAWN_EGG);

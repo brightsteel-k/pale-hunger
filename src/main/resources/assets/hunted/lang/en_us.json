@@ -11,6 +11,11 @@
   "block.hunted.pale_leaves": "Pale Leaves",
   "block.hunted.pale_hyphae_dirt": "Pale Hyphae Dirt",
   "block.hunted.pale_mycelium": "Pale Mycelium",
+  "block.hunted.pale_growth": "Pale Growth",
+  "block.hunted.pale_wall_growth": "Pale Wall Growth",
+  "block.hunted.pale_conk": "Pale Conk",
+  "block.hunted.pale_wall_conk": "Pale Wall Conk",
+  "block.hunted.pale_tendrils": "Pale Tendrils",
 
   "entity.hunted.skinfeeder": "Skinfeeder"
 }

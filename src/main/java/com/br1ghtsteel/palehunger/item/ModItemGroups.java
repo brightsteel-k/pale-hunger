@@ -24,6 +24,9 @@ public class ModItemGroups {
                         entries.add(ModBlocks.TALL_PALE_FUNGUS);
                         entries.add(ModBlocks.PALE_GRASS);
                         entries.add(ModBlocks.TALL_PALE_GRASS);
+                        entries.add(ModItems.PALE_GROWTH);
+                        entries.add(ModItems.PALE_CONK);
+                        entries.add(ModBlocks.PALE_TENDRILS);
                         entries.add(ModItems.SKINFEEDER_SPAWN_EGG);
                     }).build());
 

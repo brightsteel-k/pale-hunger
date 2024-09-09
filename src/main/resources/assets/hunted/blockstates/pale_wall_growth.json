@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "hunted:block/pale_wall_growth",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "hunted:block/pale_wall_growth"
+    },
+    "facing=south": {
+      "model": "hunted:block/pale_wall_growth",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "hunted:block/pale_wall_growth",
+      "y": 270
+    }
+  }
+}
