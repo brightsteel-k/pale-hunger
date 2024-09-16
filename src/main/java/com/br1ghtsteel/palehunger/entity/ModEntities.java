@@ -16,6 +16,12 @@ public class ModEntities {
                     .maxTrackingRange(8)
     );
 
+    public static final EntityType<LurcherEntity> LURCHER_ENTITY = registerEntity("lurcher",
+            EntityType.Builder.create(LurcherEntity::new, SpawnGroup.MONSTER)
+                    .setDimensions(0.6F, 1.7F)
+                    .maxTrackingRange(8)
+    );
+
     public static <T extends Entity> EntityType<T> registerEntity(String name, EntityType.Builder<T> entityTypeBuilder) {
         EntityType<T> entityType = entityTypeBuilder.build(name);
         return Registry.register(Registries.ENTITY_TYPE, new Identifier(Hunted.MOD_ID, name), entityType);

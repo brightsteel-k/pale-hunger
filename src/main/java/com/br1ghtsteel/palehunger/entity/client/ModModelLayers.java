@@ -10,6 +10,9 @@ public class ModModelLayers {
     public static final EntityModelLayer SKINFEEDER_OUTER = register("skinfeeder", "outer");
     public static final EntityModelLayer SKINFEEDER_INNER_ARMOR = register("skinfeeder", "inner_armor");
     public static final EntityModelLayer SKINFEEDER_OUTER_ARMOR = register("skinfeeder", "outer_armor");
+    public static final EntityModelLayer LURCHER = register("lurcher");
+    public static final EntityModelLayer LURCHER_ARMOR = register("lurcher", "armor");
+    public static final EntityModelLayer LURCHER_HEAD = register("lurcher_head");
 
     private static EntityModelLayer register(String id) {
         return register(id, "main");

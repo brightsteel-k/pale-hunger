@@ -1,6 +1,7 @@
 package com.br1ghtsteel.palehunger;
 
 import com.br1ghtsteel.palehunger.block.ModBlocks;
+import com.br1ghtsteel.palehunger.entity.LurcherEntity;
 import com.br1ghtsteel.palehunger.entity.ModEntities;
 import com.br1ghtsteel.palehunger.entity.SkinfeederEntity;
 import com.br1ghtsteel.palehunger.item.ModItemGroups;
@@ -27,6 +28,7 @@ public class Hunted implements ModInitializer {
         ModBlocks.registerModBlocks();
 
         FabricDefaultAttributeRegistry.register(ModEntities.SKINFEEDER_ENTITY, SkinfeederEntity.createSkinfeederAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.LURCHER_ENTITY, LurcherEntity.createLurcherAttributes());
 	}
 
     public static void sendChatMessage(String message) {
