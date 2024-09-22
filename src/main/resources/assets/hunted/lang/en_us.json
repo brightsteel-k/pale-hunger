@@ -1,7 +1,8 @@
 {
   "itemgroup.hunted": "The Pale Hunger",
 
-  "item.hunted.skinfeeder_spawn_egg": "Skinfeeder Spawn Egg",
+  "item.hunted.ghoul_spawn_egg": "Ghoul Spawn Egg",
+  "item.hunted.lurcher_spawn_egg": "Lurcher Spawn Egg",
 
   "block.hunted.dross_rose": "Dross Rose",
   "block.hunted.pale_fungus": "Pale Fungus",
@@ -17,6 +18,6 @@
   "block.hunted.pale_wall_conk": "Pale Wall Conk",
   "block.hunted.pale_tendrils": "Pale Tendrils",
 
-  "entity.hunted.skinfeeder": "Skinfeeder",
+  "entity.hunted.ghoul": "Ghoul",
   "entity.hunted.lurcher": "Lurcher"
 }

@@ -25,11 +25,11 @@ public class HuntedClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALE_WALL_CONK, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALE_TENDRILS, RenderLayer.getCutout());
 
-        EntityRendererRegistry.register(ModEntities.SKINFEEDER_ENTITY, SkinfeederRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.SKINFEEDER, SkinfeederModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.SKINFEEDER_OUTER, SkinfeederModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.SKINFEEDER_INNER_ARMOR, SkinfeederModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.SKINFEEDER_OUTER_ARMOR, SkinfeederModel::getTexturedModelData);
+        EntityRendererRegistry.register(ModEntities.GHOUL_ENTITY, GhoulRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.GHOUL, SkinfeederModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.GHOUL_OUTER, SkinfeederModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.GHOUL_INNER_ARMOR, SkinfeederModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.GHOUL_OUTER_ARMOR, SkinfeederModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.LURCHER_ENTITY, LurcherRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.LURCHER, LurcherModel::getTexturedModelData);

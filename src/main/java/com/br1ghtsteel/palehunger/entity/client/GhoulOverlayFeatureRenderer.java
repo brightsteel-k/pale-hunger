@@ -1,7 +1,7 @@
 package com.br1ghtsteel.palehunger.entity.client;
 
 import com.br1ghtsteel.palehunger.Hunted;
-import com.br1ghtsteel.palehunger.entity.SkinfeederEntity;
+import com.br1ghtsteel.palehunger.entity.GhoulEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -12,13 +12,13 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class SkinfeederOverlayFeatureRenderer<T extends SkinfeederEntity> extends FeatureRenderer<T, SkinfeederModel<T>> {
-    private static final Identifier SKIN = new Identifier(Hunted.MOD_ID, "textures/entity/skinfeeder_outer_layer.png");
+public class GhoulOverlayFeatureRenderer<T extends GhoulEntity> extends FeatureRenderer<T, SkinfeederModel<T>> {
+    private static final Identifier SKIN = new Identifier(Hunted.MOD_ID, "textures/entity/ghoul_outer_layer.png");
     private final SkinfeederModel<T> model;
 
-    public SkinfeederOverlayFeatureRenderer(FeatureRendererContext<T, SkinfeederModel<T>> context, EntityModelLoader loader) {
+    public GhoulOverlayFeatureRenderer(FeatureRendererContext<T, SkinfeederModel<T>> context, EntityModelLoader loader) {
         super(context);
-        this.model = new SkinfeederModel<>(loader.getModelPart(ModModelLayers.SKINFEEDER_OUTER));
+        this.model = new SkinfeederModel<>(loader.getModelPart(ModModelLayers.GHOUL_OUTER));
     }
 
     public void render(

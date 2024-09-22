@@ -16,13 +16,16 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 
 public class ModItems {
-    public static final Item SKINFEEDER_SPAWN_EGG = registerItem("skinfeeder_spawn_egg",
-            new SpawnEggItem(ModEntities.SKINFEEDER_ENTITY, 0xad9e95, 0xdf3c3f, new FabricItemSettings()));
+    public static final Item GHOUL_SPAWN_EGG = registerItem("ghoul_spawn_egg",
+            new SpawnEggItem(ModEntities.GHOUL_ENTITY, 0xad9e95, 0xdf3c3f, new FabricItemSettings()));
+    public static final Item LURCHER_SPAWN_EGG = registerItem("lurcher_spawn_egg",
+            new SpawnEggItem(ModEntities.LURCHER_ENTITY, 0xad9e95, 0xdf3c3f, new FabricItemSettings()));
     public static final Item PALE_GROWTH = registerItem("pale_growth", new VerticallyAttachableBlockItem(ModBlocks.PALE_GROWTH, ModBlocks.PALE_WALL_GROWTH, new Item.Settings(), Direction.DOWN));
     public static final Item PALE_CONK = registerItem("pale_conk", new VerticallyAttachableBlockItem(ModBlocks.PALE_CONK, ModBlocks.PALE_WALL_CONK, new Item.Settings(), Direction.DOWN));
 
     private static void addItemsToSpawnEggItemGroup(FabricItemGroupEntries entries) {
-        entries.add(SKINFEEDER_SPAWN_EGG);
+        entries.add(GHOUL_SPAWN_EGG);
+        entries.add(LURCHER_SPAWN_EGG);
     }
 
     public static Item registerItem(String name, Item item) {

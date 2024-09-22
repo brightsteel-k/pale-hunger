@@ -1,5 +1,7 @@
 package com.br1ghtsteel.palehunger.entity;
 
+import com.br1ghtsteel.palehunger.entity.ai.IPaleHungerEntity;
+import com.br1ghtsteel.palehunger.entity.ai.goal.PaleHungerGoals;
 import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -30,12 +32,14 @@ import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
+import java.util.EnumSet;
 
-public class LurcherEntity extends HostileEntity implements SkinOverlayOwner {
+public class LurcherEntity extends HostileEntity implements SkinOverlayOwner, IPaleHungerEntity {
     private static final TrackedData<Integer> FUSE_SPEED = DataTracker.registerData(LurcherEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Boolean> CHARGED = DataTracker.registerData(LurcherEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> IGNITED = DataTracker.registerData(LurcherEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> PROVOKED = DataTracker.registerData(LurcherEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> ROOTED = DataTracker.registerData(LurcherEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private int lastFuseTime;
     private int currentFuseTime;
     private int fuseTime = 30;
@@ -53,14 +57,35 @@ public class LurcherEntity extends HostileEntity implements SkinOverlayOwner {
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(1, new SwimGoal(this));
-        // this.goalSelector.add(2, new CreeperIgniteGoal(this)); TODO: REDO
-        this.goalSelector.add(4, new MeleeAttackGoal(this, 1.0, false));
-        this.goalSelector.add(5, new WanderAroundFarGoal(this, 0.8));
-        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.add(6, new LookAroundGoal(this));
-        this.targetSelector.add(1, new ActiveTargetGoal(this, PlayerEntity.class, true));
-        this.targetSelector.add(2, new RevengeGoal(this));
+        this.goalSelector.add(0, new SwimGoal(this));
+        this.goalSelector.add(1, new LurcherIgniteGoal(this));
+        this.goalSelector.add(2, new PaleHungerGoals.ProvokedAttackGoal(this, 1.0, true));
+        this.goalSelector.add(4, new PaleHungerGoals.AttackWhenNotLookedAtGoal(this, 1.0, true));
+        this.goalSelector.add(6, new PaleHungerGoals.FreezeOnLookedAtGoal(this));
+        this.goalSelector.add(7, new WanderAroundFarGoal(this, 0.8));
+        this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+        this.targetSelector.add(1, new PaleHungerGoals.RevengeProvokeGoal(this));
+        this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
+    }
+
+    @Override
+    public boolean isProvoked() {
+        return this.dataTracker.get(PROVOKED);
+    }
+
+    @Override
+    public void setProvoked(boolean newProvoked) {
+        this.dataTracker.set(PROVOKED, newProvoked);
+    }
+
+    @Override
+    public boolean isRooted() {
+        return this.dataTracker.get(ROOTED);
+    }
+
+    @Override
+    public void setRooted(boolean newRooted) {
+        this.dataTracker.set(ROOTED, newRooted);
     }
 
     @Override
@@ -85,6 +110,8 @@ public class LurcherEntity extends HostileEntity implements SkinOverlayOwner {
         this.dataTracker.startTracking(FUSE_SPEED, -1);
         this.dataTracker.startTracking(CHARGED, false);
         this.dataTracker.startTracking(IGNITED, false);
+        this.dataTracker.startTracking(PROVOKED, false);
+        this.dataTracker.startTracking(ROOTED, false);
     }
 
     @Override
@@ -262,5 +289,51 @@ public class LurcherEntity extends HostileEntity implements SkinOverlayOwner {
 
     public void onHeadDropped() {
         this.headsDropped++;
+    }
+
+    static class LurcherIgniteGoal extends Goal {
+        private final LurcherEntity lurcher;
+        @Nullable
+        private LivingEntity target;
+
+        public LurcherIgniteGoal(LurcherEntity lurcher) {
+            this.lurcher = lurcher;
+            this.setControls(EnumSet.of(Goal.Control.MOVE));
+        }
+
+        @Override
+        public boolean canStart() {
+            LivingEntity livingEntity = this.lurcher.getTarget();
+            return this.lurcher.getFuseSpeed() > 0 || livingEntity != null && this.lurcher.squaredDistanceTo(livingEntity) < 9.0;
+        }
+
+        @Override
+        public void start() {
+            this.lurcher.getNavigation().stop();
+            this.target = this.lurcher.getTarget();
+        }
+
+        @Override
+        public void stop() {
+            this.target = null;
+        }
+
+        @Override
+        public boolean shouldRunEveryTick() {
+            return true;
+        }
+
+        @Override
+        public void tick() {
+            if (this.target == null) {
+                this.lurcher.setFuseSpeed(-1);
+            } else if (this.lurcher.squaredDistanceTo(this.target) > 49.0) {
+                this.lurcher.setFuseSpeed(-1);
+            } else if (!this.lurcher.getVisibilityCache().canSee(this.target)) {
+                this.lurcher.setFuseSpeed(-1);
+            } else {
+                this.lurcher.setFuseSpeed(1);
+            }
+        }
     }
 }

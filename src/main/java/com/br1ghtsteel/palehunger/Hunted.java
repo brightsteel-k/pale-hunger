@@ -3,7 +3,7 @@ package com.br1ghtsteel.palehunger;
 import com.br1ghtsteel.palehunger.block.ModBlocks;
 import com.br1ghtsteel.palehunger.entity.LurcherEntity;
 import com.br1ghtsteel.palehunger.entity.ModEntities;
-import com.br1ghtsteel.palehunger.entity.SkinfeederEntity;
+import com.br1ghtsteel.palehunger.entity.GhoulEntity;
 import com.br1ghtsteel.palehunger.item.ModItemGroups;
 import com.br1ghtsteel.palehunger.item.ModItems;
 import net.fabricmc.api.ModInitializer;
@@ -27,7 +27,7 @@ public class Hunted implements ModInitializer {
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
 
-        FabricDefaultAttributeRegistry.register(ModEntities.SKINFEEDER_ENTITY, SkinfeederEntity.createSkinfeederAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.GHOUL_ENTITY, GhoulEntity.createGhoulAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.LURCHER_ENTITY, LurcherEntity.createLurcherAttributes());
 	}
 

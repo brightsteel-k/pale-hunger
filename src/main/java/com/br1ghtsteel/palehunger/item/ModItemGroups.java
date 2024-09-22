@@ -27,7 +27,8 @@ public class ModItemGroups {
                         entries.add(ModItems.PALE_GROWTH);
                         entries.add(ModItems.PALE_CONK);
                         entries.add(ModBlocks.PALE_TENDRILS);
-                        entries.add(ModItems.SKINFEEDER_SPAWN_EGG);
+                        entries.add(ModItems.GHOUL_SPAWN_EGG);
+                        entries.add(ModItems.LURCHER_SPAWN_EGG);
                     }).build());
 
     public static void registerItemGroups() {

@@ -10,8 +10,8 @@ import net.minecraft.util.Identifier;
 
 public class ModEntities {
 
-    public static final EntityType<SkinfeederEntity> SKINFEEDER_ENTITY = registerEntity("skinfeeder",
-            EntityType.Builder.create(SkinfeederEntity::new, SpawnGroup.MONSTER)
+    public static final EntityType<GhoulEntity> GHOUL_ENTITY = registerEntity("ghoul",
+            EntityType.Builder.create(GhoulEntity::new, SpawnGroup.MONSTER)
                     .setDimensions(0.6F, 1.95F)
                     .maxTrackingRange(8)
     );
