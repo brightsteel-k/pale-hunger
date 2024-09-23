@@ -61,9 +61,10 @@ public class LurcherEntity extends HostileEntity implements SkinOverlayOwner, IP
         this.goalSelector.add(1, new LurcherIgniteGoal(this));
         this.goalSelector.add(2, new PaleHungerGoals.ProvokedAttackGoal(this, 1.0, true));
         this.goalSelector.add(4, new PaleHungerGoals.AttackWhenNotLookedAtGoal(this, 1.0, true));
-        this.goalSelector.add(6, new PaleHungerGoals.FreezeOnLookedAtGoal(this));
-        this.goalSelector.add(7, new WanderAroundFarGoal(this, 0.8));
-        this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.add(5, new PaleHungerGoals.StepForwardWhenLookedAtGoal(this, 0.5, true, 10));
+        this.goalSelector.add(6, new PaleHungerGoals.FreezeOnLookedAtPatienceGoal(this, 60));
+        this.goalSelector.add(8, new WanderAroundFarGoal(this, 0.8));
+        this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.targetSelector.add(1, new PaleHungerGoals.RevengeProvokeGoal(this));
         this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
     }

@@ -24,6 +24,7 @@ public class HuntedClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALE_CONK, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALE_WALL_CONK, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALE_TENDRILS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALE_VEIN, RenderLayer.getCutout());
 
         EntityRendererRegistry.register(ModEntities.GHOUL_ENTITY, GhoulRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.GHOUL, SkinfeederModel::getTexturedModelData);

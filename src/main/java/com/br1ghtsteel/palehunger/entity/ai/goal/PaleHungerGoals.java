@@ -1,5 +1,6 @@
 package com.br1ghtsteel.palehunger.entity.ai.goal;
 
+import com.br1ghtsteel.palehunger.Hunted;
 import com.br1ghtsteel.palehunger.entity.ai.IPaleHungerEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -50,10 +51,12 @@ public class PaleHungerGoals {
 
     // Stops Pale Hunger entity's movement when a player looks at them
     public static class FreezeOnLookedAtGoal extends Goal {
-        private final HostileEntity targetEntity;
+        protected final HostileEntity targetEntity;
+        protected final IPaleHungerEntity paleHungerEntity;
 
         public FreezeOnLookedAtGoal(HostileEntity targetEntity) {
             this.targetEntity = targetEntity;
+            this.paleHungerEntity = (IPaleHungerEntity)targetEntity;
             this.setControls(EnumSet.of(Goal.Control.JUMP, Goal.Control.MOVE));
         }
 
@@ -65,22 +68,19 @@ public class PaleHungerGoals {
         @Override
         public void start() {
             this.targetEntity.getNavigation().stop();
-            try {
-                IPaleHungerEntity paleHungerEntity = (IPaleHungerEntity)targetEntity;
-                paleHungerEntity.setRooted(true);
-            } catch (ClassCastException e) {
-
-            }
+            this.paleHungerEntity.setRooted(true);
         }
     }
 
     // Starts Pale Hunger entity's movement towards target when player is not looking at them
     public static class AttackWhenNotLookedAtGoal extends MeleeAttackGoal {
         private final HostileEntity entity;
+        private final IPaleHungerEntity paleHungerEntity;
 
         public AttackWhenNotLookedAtGoal(HostileEntity entity, double speed, boolean pauseWhenMobIdle) {
             super(entity, speed, pauseWhenMobIdle);
             this.entity = entity;
+            this.paleHungerEntity = (IPaleHungerEntity)entity;
         }
 
         @Override
@@ -95,12 +95,81 @@ public class PaleHungerGoals {
 
         @Override
         public void start() {
-            try {
-                IPaleHungerEntity paleHungerEntity = (IPaleHungerEntity)entity;
-                paleHungerEntity.setRooted(false);
-            } catch (ClassCastException e) {
+            super.start();
+            Hunted.sendChatMessage("AttackWhenNotLookedAt Started");
+            this.paleHungerEntity.setRooted(false);
+        }
+    }
 
+    // Stops Pale Hunger entity's movement when a player looks at them
+    public static class FreezeOnLookedAtPatienceGoal extends FreezeOnLookedAtGoal {
+        private final int maxPatienceTicks;
+        private int currentPatienceTicks;
+
+        public FreezeOnLookedAtPatienceGoal(HostileEntity targetEntity, int maxPatienceTicks) {
+            super(targetEntity);
+            this.maxPatienceTicks = maxPatienceTicks;
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            this.currentPatienceTicks = targetEntity.getRandom().nextBetween(maxPatienceTicks / 2, maxPatienceTicks);
+        }
+
+        @Override
+        public void tick() {
+            super.tick();
+            if (this.currentPatienceTicks > 0) {
+                this.currentPatienceTicks--;
+            } else {
+                this.paleHungerEntity.setRooted(false);
             }
+        }
+    }
+
+    // Allows Pale Hunger entity to move forward briefly, even when target is looking at them.
+    // Should be placed at a lower priority than AttackWhenNotLookedAtGoal
+    public static class StepForwardWhenLookedAtGoal extends MeleeAttackGoal {
+        private final HostileEntity entity;
+        private final IPaleHungerEntity paleHungerEntity;
+        private final int stepDuration;
+        private int currentStepDuration;
+
+        public StepForwardWhenLookedAtGoal(HostileEntity entity, double speed, boolean pauseWhenMobIdle, int stepDuration) {
+            super(entity, speed, pauseWhenMobIdle);
+            this.entity = entity;
+            this.stepDuration = stepDuration;
+            this.paleHungerEntity = (IPaleHungerEntity)entity;
+        }
+
+        @Override
+        public boolean canStart() {
+            return !this.paleHungerEntity.isRooted() && super.canStart();
+        }
+
+        @Override
+        public boolean shouldContinue() {
+            return this.currentStepDuration > 0 && super.shouldContinue();
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            this.currentStepDuration = this.stepDuration;
+        }
+
+        @Override
+        public void tick() {
+            if (this.currentStepDuration > 0) {
+                this.currentStepDuration--;
+            }
+        }
+
+        @Override
+        public void stop() {
+            super.stop();
+            this.paleHungerEntity.setRooted(true);
         }
     }
 

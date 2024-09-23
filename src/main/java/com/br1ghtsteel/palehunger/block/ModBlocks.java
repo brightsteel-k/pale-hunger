@@ -141,6 +141,18 @@ public class ModBlocks {
                             .pistonBehavior(PistonBehavior.DESTROY)
             )
     );
+    public static final Block PALE_VEIN = registerBlock(
+            "pale_vein",
+            new PaleVeinBlock(
+                    AbstractBlock.Settings.create()
+                            .mapColor(MapColor.WHITE)
+                            .solid()
+                            .noCollision()
+                            .strength(0.2F)
+                            .sounds(BlockSoundGroup.SCULK_VEIN)
+                            .pistonBehavior(PistonBehavior.DESTROY)
+            )
+    );
 
     public static Block registerBlock(String name, Block block) {
         return registerBlock(name, block, true);
