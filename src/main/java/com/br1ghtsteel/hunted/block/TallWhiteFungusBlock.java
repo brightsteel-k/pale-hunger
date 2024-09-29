@@ -2,8 +2,8 @@ package com.br1ghtsteel.hunted.block;
 
 import net.minecraft.block.TallPlantBlock;
 
-public class TallPaleFungusBlock extends TallPlantBlock {
-    public TallPaleFungusBlock(Settings settings) {
+public class TallWhiteFungusBlock extends TallPlantBlock {
+    public TallWhiteFungusBlock(Settings settings) {
         super(settings);
     }
 }

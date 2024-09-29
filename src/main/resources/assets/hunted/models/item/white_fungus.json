@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hunted:block/tall_pale_grass_top"
+    "layer0": "hunted:block/white_fungus"
   }
 }

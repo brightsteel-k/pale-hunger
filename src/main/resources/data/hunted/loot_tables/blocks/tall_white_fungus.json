@@ -5,7 +5,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "hunted:tall_pale_fungus",
+          "block": "hunted:tall_white_fungus",
           "condition": "minecraft:block_state_property",
           "properties": {
             "half": "lower"
@@ -17,7 +17,7 @@
           "predicate": {
             "block": {
               "blocks": [
-                "hunted:tall_pale_fungus"
+                "hunted:tall_white_fungus"
               ],
               "state": {
                 "half": "upper"
@@ -34,7 +34,7 @@
               "condition": "minecraft:survives_explosion"
             }
           ],
-          "name": "hunted:pale_fungus",
+          "name": "hunted:white_fungus",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -52,7 +52,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "hunted:tall_pale_fungus",
+          "block": "hunted:tall_white_fungus",
           "condition": "minecraft:block_state_property",
           "properties": {
             "half": "upper"
@@ -64,7 +64,7 @@
           "predicate": {
             "block": {
               "blocks": [
-                "hunted:tall_pale_fungus"
+                "hunted:tall_white_fungus"
               ],
               "state": {
                 "half": "lower"
@@ -81,7 +81,7 @@
               "condition": "minecraft:survives_explosion"
             }
           ],
-          "name": "hunted:pale_fungus",
+          "name": "hunted:white_fungus",
           "functions": [
             {
               "function": "minecraft:set_count",

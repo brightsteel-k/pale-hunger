@@ -14,16 +14,16 @@ public class ModItemGroups {
     public static final ItemGroup HUNTED = Registry.register(Registries.ITEM_GROUP,
             new Identifier(Hunted.MOD_ID, "hunted"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.hunted"))
-                    .icon(() -> new ItemStack(ModBlocks.PALE_FUNGUS))
+                    .icon(() -> new ItemStack(ModBlocks.WHITE_FUNGUS))
                     .entries((displayContext, entries) -> {
                         entries.add(ModBlocks.DROSS_ROSE);
                         entries.add(ModBlocks.WHITE_HYPHAE_DIRT);
                         entries.add(ModBlocks.WHITE_MYCELIUM);
                         entries.add(ModBlocks.PALE_LEAVES);
-                        entries.add(ModBlocks.PALE_FUNGUS);
-                        entries.add(ModBlocks.TALL_PALE_FUNGUS);
-                        entries.add(ModBlocks.PALE_GRASS);
-                        entries.add(ModBlocks.TALL_PALE_GRASS);
+                        entries.add(ModBlocks.WHITE_FUNGUS);
+                        entries.add(ModBlocks.TALL_WHITE_FUNGUS);
+                        entries.add(ModBlocks.WHITEGRASS);
+                        entries.add(ModBlocks.TALL_WHITEGRASS);
                         entries.add(ModItems.PALE_GROWTH);
                         entries.add(ModItems.PALE_CONK);
                         entries.add(ModBlocks.PALE_TENDRILS);

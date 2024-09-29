@@ -17,7 +17,7 @@
           "predicate": {
             "block": {
               "blocks": [
-                "hunted:tall_pale_grass"
+                "hunted:tall_whitegrass"
               ],
               "state": {
                 "half": "upper"
@@ -46,7 +46,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "hunted:pale_grass"
+          "name": "hunted:whitegrass"
         }
       ],
       "rolls": 1.0
@@ -67,7 +67,7 @@
           "predicate": {
             "block": {
               "blocks": [
-                "hunted:tall_pale_grass"
+                "hunted:tall_whitegrass"
               ],
               "state": {
                 "half": "lower"
@@ -96,7 +96,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "hunted:pale_grass"
+          "name": "hunted:whitegrass"
         }
       ],
       "rolls": 1.0

@@ -32,19 +32,19 @@ public class ModBlocks {
             )
     );
     public static final Block WHITE_HYPHAE_DIRT = registerBlock("white_hyphae_dirt",
-            new WhiteHungerBlock(AbstractBlock.Settings.create().mapColor(MapColor.DIRT_BROWN).strength(0.5F).sounds(BlockSoundGroup.GRAVEL))
+            new WhiteHungerBlock(AbstractBlock.Settings.create().mapColor(MapColor.DIRT_BROWN).strength(0.5F).sounds(BlockSoundGroup.GRAVEL), false)
     );
     public static final Block WHITE_MYCELIUM = registerBlock("white_mycelium",
-            new WhiteHungerBlock(AbstractBlock.Settings.create().mapColor(MapColor.DIRT_BROWN).strength(0.5F).sounds(BlockSoundGroup.GRAVEL))
+            new WhiteHungerBlock(AbstractBlock.Settings.create().mapColor(MapColor.DIRT_BROWN).strength(0.5F).sounds(BlockSoundGroup.GRAVEL), true)
     );
-    public static final Block PALE_FUNGUS = registerBlock("pale_fungus",
-            new PaleFungusBlock(
+    public static final Block WHITE_FUNGUS = registerBlock("white_fungus",
+            new WhiteFungusBlock(
                     AbstractBlock.Settings.create().mapColor(MapColor.WHITE).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS).pistonBehavior(PistonBehavior.DESTROY),
                     WHITE_MYCELIUM
             )
     );
-    public static final Block TALL_PALE_FUNGUS = registerBlock("tall_pale_fungus",
-            new TallPaleFungusBlock(
+    public static final Block TALL_WHITE_FUNGUS = registerBlock("tall_white_fungus",
+            new TallWhiteFungusBlock(
                     AbstractBlock.Settings.create()
                             .mapColor(MapColor.WHITE)
                             .replaceable()
@@ -56,7 +56,7 @@ public class ModBlocks {
                             .pistonBehavior(PistonBehavior.DESTROY)
             )
     );
-    public static final Block PALE_GRASS = registerBlock("pale_grass",
+    public static final Block WHITEGRASS = registerBlock("whitegrass",
             new FernBlock(
                     AbstractBlock.Settings.create()
                             .mapColor(MapColor.WHITE)
@@ -69,7 +69,7 @@ public class ModBlocks {
                             .pistonBehavior(PistonBehavior.DESTROY)
             )
     );
-    public static final Block TALL_PALE_GRASS = registerBlock("tall_pale_grass",
+    public static final Block TALL_WHITEGRASS = registerBlock("tall_whitegrass",
             new TallPlantBlock(
                     AbstractBlock.Settings.create()
                             .mapColor(MapColor.WHITE)

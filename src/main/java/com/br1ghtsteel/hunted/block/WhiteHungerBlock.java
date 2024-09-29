@@ -13,8 +13,11 @@ import net.minecraft.world.WorldAccess;
 
 public class WhiteHungerBlock extends Block {
 
-    public WhiteHungerBlock(Settings settings) {
+    public boolean shouldGrow;
+
+    public WhiteHungerBlock(Settings settings, boolean shouldGrow) {
         super(settings);
+        this.shouldGrow = shouldGrow;
     }
 
     @Override
@@ -25,8 +28,7 @@ public class WhiteHungerBlock extends Block {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (!world.isClient() && WhiteHungerProliferation.getBlockConversion(neighborState.getBlock()) != null) {
-            Hunted.sendChatMessage("WhiteHungerBlock getStateForNeighborUpdate called.");
+        if (this.shouldGrow && !world.isClient() && WhiteHungerProliferation.isEnabled() && WhiteHungerProliferation.getBlockConversion(neighborState.getBlock()) != null) {
             world.scheduleBlockTick(pos, state.getBlock(), getWhiteHungerUpdateTickDelay(world.getRandom()));
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -34,8 +36,7 @@ public class WhiteHungerBlock extends Block {
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (!world.isClient()) {
-            Hunted.sendChatMessage("WhiteHungerBlock onBlockAdded called.");
+        if (this.shouldGrow && !world.isClient() && WhiteHungerProliferation.isEnabled()) {
             world.scheduleBlockTick(pos, state.getBlock(), getWhiteHungerUpdateTickDelay(world.getRandom()));
         }
         super.onBlockAdded(state, world, pos, oldState, notify);
@@ -55,11 +56,15 @@ public class WhiteHungerBlock extends Block {
                 int dy = Math.abs(y);
                 for (int z = -MAX_DIST + dx + dy; z <= MAX_DIST - dx - dy; z++) {
                     int dz = Math.abs(z);
+                    int distance = dx + dy + dz;
                     mutableBlockPos.set(pos, x, y, z);
 
                     // Try to grow to block
-                    if (!tryGrowToBlock(mutableBlockPos, world, random, dx + dy + dz)) {
-                        shouldRevisit = true;
+                    if (!tryGrowToBlock(mutableBlockPos, world, random, distance)) {
+                        // Mark this block as requiring a revisit, unless it is the furthest distance away
+                        if (distance < MAX_DIST || random.nextBoolean()) {
+                            shouldRevisit = true;
+                        }
                     }
                 }
             }
@@ -93,7 +98,7 @@ public class WhiteHungerBlock extends Block {
 
         // Try to convert the block
         if (shouldConvertBlock(random, distance)) {
-            world.setBlockState(blockPos, convertedBlock.getDefaultState(),3);
+            WhiteHungerProliferation.convertBlock(world, blockPos, targetBlockState, convertedBlock.getDefaultState());
             return true;
         } else {
             return false;

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "hunted:block/tall_pale_grass_top"
+    "cross": "hunted:block/tall_white_fungus_top"
   }
 }
