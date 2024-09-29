@@ -1,6 +1,5 @@
 package com.br1ghtsteel.hunted.block;
 
-import com.br1ghtsteel.hunted.Hunted;
 import com.br1ghtsteel.hunted.whitehunger.WhiteHungerProliferation;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,7 +27,7 @@ public class WhiteHungerBlock extends Block {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (this.shouldGrow && !world.isClient() && WhiteHungerProliferation.isEnabled() && WhiteHungerProliferation.getBlockConversion(neighborState.getBlock()) != null) {
+        if (this.shouldGrow && !world.isClient() && WhiteHungerProliferation.isEnabled() && WhiteHungerProliferation.getBlockConversion(neighborState) != null) {
             world.scheduleBlockTick(pos, state.getBlock(), getWhiteHungerUpdateTickDelay(world.getRandom()));
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -45,7 +44,7 @@ public class WhiteHungerBlock extends Block {
     private static final int MAX_DIST = 3;
 
     public static void tryGrow(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        Hunted.sendChatMessage("TryGrow called at: " + pos.toString());
+        WhiteHungerProliferation.logGrowCall();
         boolean shouldRevisit = false;
 
         // Check for nearby noninfected blocks
@@ -60,11 +59,9 @@ public class WhiteHungerBlock extends Block {
                     mutableBlockPos.set(pos, x, y, z);
 
                     // Try to grow to block
-                    if (!tryGrowToBlock(mutableBlockPos, world, random, distance)) {
-                        // Mark this block as requiring a revisit, unless it is the furthest distance away
-                        if (distance < MAX_DIST || random.nextBoolean()) {
-                            shouldRevisit = true;
-                        }
+                    if (!tryGrowToBlock(mutableBlockPos, world, random, distance) && WhiteHungerProliferation.convertsToWhiteMycelium(world.getBlockState(mutableBlockPos))) {
+                        // Mark this block as requiring a revisit
+                        shouldRevisit = true;
                     }
                 }
             }
@@ -90,15 +87,15 @@ public class WhiteHungerBlock extends Block {
             return true;
         }
 
-        Block convertedBlock = WhiteHungerProliferation.getBlockConversion(targetBlockState.getBlock());
+        BlockState convertedBlockState = WhiteHungerProliferation.getBlockConversion(targetBlockState);
         // Check if block cannot be converted
-        if (convertedBlock == null) {
+        if (convertedBlockState == null) {
             return true;
         }
 
         // Try to convert the block
         if (shouldConvertBlock(random, distance)) {
-            WhiteHungerProliferation.convertBlock(world, blockPos, targetBlockState, convertedBlock.getDefaultState());
+            WhiteHungerProliferation.convertToBlock(world, blockPos, convertedBlockState);
             return true;
         } else {
             return false;

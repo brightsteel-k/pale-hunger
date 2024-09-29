@@ -1,6 +1,7 @@
 package com.br1ghtsteel.hunted.whitehunger;
 
 import com.br1ghtsteel.hunted.block.ModBlocks;
+import com.br1ghtsteel.hunted.tags.ModBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -16,36 +17,44 @@ import java.util.Map;
 
 public class WhiteHungerProliferation {
 
-    private static final Map<Block, Block> whiteHungerBlockConversions = new HashMap<>();
     private static final Map<Block, Block> whiteHungerDecorationConversions = new HashMap<>();
     private static boolean whiteHungerSpreadEnabled = true;
+    public static int growCallCount = 0;
+    public static int growCallsLastCount = 0;
 
     public static void initializeWhiteHungerProliferation() {
-        whiteHungerBlockConversions.put(Blocks.DIRT, ModBlocks.WHITE_HYPHAE_DIRT);
-        whiteHungerBlockConversions.put(Blocks.ROOTED_DIRT, ModBlocks.WHITE_HYPHAE_DIRT);
-        whiteHungerBlockConversions.put(Blocks.GRASS_BLOCK, ModBlocks.WHITE_MYCELIUM);
-        whiteHungerBlockConversions.put(Blocks.MYCELIUM, ModBlocks.WHITE_MYCELIUM);
-        whiteHungerBlockConversions.put(Blocks.PODZOL, ModBlocks.WHITE_MYCELIUM);
-
         whiteHungerDecorationConversions.put(Blocks.GRASS, ModBlocks.WHITEGRASS);
         whiteHungerDecorationConversions.put(Blocks.POPPY, ModBlocks.WHITE_FUNGUS);
     }
 
     @Nullable
-    public static Block getBlockConversion(Block block) {
-        return whiteHungerBlockConversions.get(block);
+    public static BlockState getBlockConversion(BlockState blockState) {
+        if (convertsToWhiteMycelium(blockState)) {
+            return ModBlocks.WHITE_MYCELIUM.getDefaultState();
+        } else if (convertsToWhiteHyphaeDirt(blockState)) {
+            return ModBlocks.WHITE_HYPHAE_DIRT.getDefaultState();
+        }
+        return null;
     }
 
-    public static void convertBlock(World world, BlockPos blockPos, BlockState fromBlock) {
-        Block toBlock = whiteHungerBlockConversions.get(fromBlock.getBlock());
-        if (toBlock != null) {
-            convertBlock(world, blockPos, fromBlock, toBlock.getDefaultState());
+    public static boolean convertsToWhiteMycelium(BlockState blockState) {
+        return blockState.isIn(ModBlockTags.WHITEHUNGER_TO_WHITE_MYCELIUM);
+    }
+
+    public static boolean convertsToWhiteHyphaeDirt(BlockState blockState) {
+        return blockState.isIn(ModBlockTags.WHITEHUNGER_TO_WHITE_HYPHAE_DIRT);
+    }
+
+    public static void convertFromBlock(World world, BlockPos blockPos, BlockState fromBlockState) {
+        BlockState toBlockState = getBlockConversion(fromBlockState);
+        if (toBlockState != null) {
+            convertToBlock(world, blockPos, toBlockState);
         }
     }
 
-    public static void convertBlock(World world, BlockPos blockPos, BlockState fromBlock, BlockState toBlock) {
+    public static void convertToBlock(World world, BlockPos blockPos, BlockState toBlockState) {
+        world.setBlockState(blockPos, toBlockState);
         checkAboveConvertedBlock(world, blockPos);
-        world.setBlockState(blockPos, toBlock);
     }
 
     public static void checkAboveConvertedBlock(World world, BlockPos blockPos) {
@@ -79,6 +88,24 @@ public class WhiteHungerProliferation {
 
     public static boolean isEnabled() {
         return whiteHungerSpreadEnabled;
+    }
+
+    public static int getGrowCallCount() {
+        return growCallCount;
+    }
+
+    public static int countGrowCallsSinceLastCount() {
+        int callsSinceLastCount = growCallCount - growCallsLastCount;
+        growCallsLastCount = growCallCount;
+        return callsSinceLastCount;
+    }
+
+    public static void clearCount() {
+        growCallCount = 0;
+    }
+
+    public static void logGrowCall() {
+        growCallCount++;
     }
 }
 

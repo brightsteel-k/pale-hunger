@@ -1,6 +1,7 @@
 package com.br1ghtsteel.hunted;
 
 import com.br1ghtsteel.hunted.block.ModBlocks;
+import com.br1ghtsteel.hunted.command.ModCommands;
 import com.br1ghtsteel.hunted.entity.LurcherEntity;
 import com.br1ghtsteel.hunted.entity.ModEntities;
 import com.br1ghtsteel.hunted.entity.GhoulEntity;
@@ -27,6 +28,7 @@ public class Hunted implements ModInitializer {
         ModItemGroups.registerItemGroups();
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
+        ModCommands.registerModCommands();
 
         WhiteHungerProliferation.initializeWhiteHungerProliferation();
 
