@@ -13,18 +13,18 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "MIT",
-	"icon": "assets/palehunger/icon.png",
+	"icon": "assets/hunted/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "com.br1ghtsteel.palehunger.Hunted"
+          "com.br1ghtsteel.hunted.Hunted"
 		],
         "client": [
-          "com.br1ghtsteel.palehunger.HuntedClient"
+          "com.br1ghtsteel.hunted.HuntedClient"
         ]
 	},
 	"mixins": [
-		"palehunger.mixins.json"
+      "hunted.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",

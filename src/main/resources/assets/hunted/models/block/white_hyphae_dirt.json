@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "hunted:block/white_hyphae_dirt"
+  }
+}
